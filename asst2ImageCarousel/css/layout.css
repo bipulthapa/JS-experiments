@@ -1,0 +1,35 @@
+/* .carousel-container{
+    width: 400px;
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+    border: 4px solid lightblue;
+} */
+
+/* .carousel-image-wrapper img {
+    margin-right: -4px;
+} */
+
+/* #slider-left{
+    position: absolute;
+    left: 0px;
+    height: 16px;
+    width: 26px;
+    top: 120px;
+    background-color: rgb(255,255,255,0.8);
+    background-image: url(../images/left-arrow.png);
+    background-repeat: no-repeat;
+
+} */
+
+/* #slider-right{
+    position: absolute;
+    right: 0px;
+    top: 120px;
+    height: 16px;
+    width: 26px;
+    background-color:rgb(255,255,255,0.8);
+    background-image: url(../images/right-arrow.png);
+    background-repeat: no-repeat;
+
+} */
