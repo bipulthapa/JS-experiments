@@ -1,0 +1,37 @@
+#canvas{
+    margin: 0px auto;
+    display: block;
+}
+
+body{
+    /* background-color: red; */
+}
+
+#splash-screen{
+    background-color: rgba(0,0,0,0.5);
+    margin: 0px auto;
+    height: 600px;
+    width: 460px;
+    font-family: "Comic Sans MS";
+    text-align: center;
+    /* vertical-align: middle; */
+    /* position: absolute;
+    top: 50%;
+    left: 50%; */
+}
+
+#start{
+    padding: 30px;
+    background-color: #eeeeee;
+    font-family: "Comic Sans MS";
+    color: rgba(0,0,0,0.5)
+}
+
+.wrapper{
+    /* line-height: 300px; */
+    position: relative;
+}
+
+#retry{
+    display: none;
+}
