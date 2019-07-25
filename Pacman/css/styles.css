@@ -1,0 +1,94 @@
+* {
+    padding: 0; margin: 0;
+}
+
+.main {
+    background: black;
+    display: block;
+    margin: 0 auto;
+    width: 600px;
+    position: relative;
+}
+
+canvas{
+    margin: 0 auto;
+    display: block;
+} 
+
+#play{
+    position: absolute;
+    padding: 10px 40px;
+    width: 200px;
+    top: 425px;
+    left: 200px;
+    border: none;
+    background-color: #00407f;
+    font-family: "comic sans ms";
+    color: white;
+    font-size: 20px;
+}
+
+#easy{
+    position: absolute;
+    padding: 10px 40px;
+    width: 160px;
+    top: 425px;
+    left: 30px;
+    border: none;
+    background-color: #00407f;
+    font-family: "comic sans ms";
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    display: none;
+}
+
+#medium{
+    position: absolute;
+    padding: 10px 40px;
+    width: 160px;
+    top: 425px;
+    left: 220px;
+    border: none;
+    background-color: #00407f;
+    font-family: "comic sans ms";
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    display: none;
+}
+
+#hard{
+    position: absolute;
+    padding: 10px 40px;
+    width: 160px;
+    top: 425px;
+    left: 410px;
+    border: none;
+    background-color: #00407f;
+    font-family: "comic sans ms";
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    display: none;
+}
+
+#enemyPlayer{
+    position: absolute;
+    padding: 10px 40px;
+    width: 400px;
+    top: 500px;
+    left: 100px;
+    border: none;
+    background-color: #00407f;
+    font-family: "comic sans ms";
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    display: none;
+}
+
+.hover:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
