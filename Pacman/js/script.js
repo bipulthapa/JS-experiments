@@ -1,7 +1,6 @@
 function assetsLoadingLoop(callback) {
     loadedPercent=((numAssets-assetsStillLoading)/numAssets)*100;
     console.log(loadedPercent)
-    console.log(assetsStillLoading);
 
     if(assetsStillLoading == 0){
         callback();
