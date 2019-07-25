@@ -1,31 +1,6 @@
 const SPRITE_CLIPPING_WIDTH = 32;
 const SPRITE_CLIPPING_HEIGHT = 32;
 
-
-// var pacManImages = new Image();
-// pacManImages.src = "./images/pac.png";
-
-// var pacmanLogo = new Image();
-// pacmanLogo.src = "./images/gameLogo.png";
-
-// var startScreenPacman = new Image();
-// startScreenPacman.src = "./images/newScreenPacman.png";
-
-// var gameOverScreen = new Image();
-// gameOverScreen.src = "./images/gameOverFinal1.png";
-// console.log(GAME_IMAGES )
-// var pacManImages = new Image();
-// pacManImages.src = PACMAN_IMAGE_SRC;
-
-// var pacmanLogo = new Image();
-// pacmanLogo.src = PACMAN_LOGO_SRC;
-
-// var startScreenPacman = new Image();
-// startScreenPacman.src = START_SCREEN_PACMAN_SRC;
-
-// var gameOverScreen = new Image();
-// gameOverScreen.src = GAME_OVER_SCREEN_SRC;
-
 class Drawer {
     constructor(ctx) {
         this.ctx = ctx;
@@ -33,36 +8,23 @@ class Drawer {
 
     drawPacman(pacman) {
         this.ctx.beginPath();
-        // this.ctx.arc(pacman.x, pacman.y, pacman.radius, 0, Math.PI * 2);
         this.ctx.drawImage(SPRITES.pacManImages,pacman.agentMouth,pacman.agentDirection,SPRITE_CLIPPING_WIDTH,SPRITE_CLIPPING_HEIGHT,pacman.x-pacman.fullRadius-2,pacman.y-pacman.fullRadius-2,2*pacman.radius,2*pacman.radius);
-        // this.ctx.fillStyle = pacman.color;
-        // this.ctx.fill();
         this.ctx.closePath();
     }
 
     drawPacmanDeath(mouth,pacmanX,pacmanY){
         this.ctx.beginPath();
-        // console.log(pacman.x,pacman.y)
         this.ctx.fillStyle = "rgba(224,189,0,0.9)";
-        // this.ctx.fillRect(game.pacman.x-game.pacman.fullRadius-2,game.pacman.y-game.pacman.fullRadius-2,2*game.pacman.fullRadius,2*game.pacman.fullRadius);
         this.ctx.arc(pacmanX,pacmanY,14,0,2*Math.PI);
         this.ctx.fill();
         this.ctx.closePath();
-
         this.ctx.drawImage(SPRITES.pacmanDeath,mouth*32,0,SPRITE_CLIPPING_WIDTH,SPRITE_CLIPPING_HEIGHT,pacmanX-12-4,pacmanY-12-2,28,28);
-
-        // this.ctx.drawImage(pacManDeath,mouth*32,0,SPRITE_CLIPPING_WIDTH,SPRITE_CLIPPING_HEIGHT,game.pacman.x-game.pacman.fullRadius-2,game.pacman.y-game.pacman.fullRadius-2,2*game.pacman.fullRadius,2*game.pacman.fullRadius);
-        // this.ctx.fillStyle = pacman.color;
-        // this.ctx.fill();
     }
 
     drawGhost(ghost, chasingMode) {
         this.ctx.beginPath();
-        // this.ctx.arc(ghost.x, ghost.y, ghost.radius, 0, Math.PI * 2);
-        // console.log(ghost);
         if(ghost.alive){
             if(chasingMode){
-                // console.log(game.agentSprite);
                 ghost.agentMouth = game.agentSprite.GHOST_DEATH*SPRITE_CLIPPING_WIDTH*2;
                 ghost.agentDirection = ghost.agentDirection == 0 ? SPRITE_CLIPPING_HEIGHT : 0;
                 this.ctx.drawImage(SPRITES.pacManImages,ghost.agentMouth,ghost.agentDirection,SPRITE_CLIPPING_WIDTH,SPRITE_CLIPPING_HEIGHT,ghost.x-ghost.fullRadius-2,ghost.y-ghost.fullRadius-2,2*ghost.radius,2*ghost.radius);
@@ -107,7 +69,6 @@ class Drawer {
 
     levelScreen(){
         this.ctx.beginPath();
-        // this.ctx.fillRect(0,0,game.canvas.width,game.canvas.height);
         this.ctx.fillStyle = "#0080ff";
         this.ctx.fillRect(0,0,game.canvas.width,game.canvas.height);
         this.ctx.fill();
@@ -118,8 +79,6 @@ class Drawer {
         this.ctx.textAlign = "center";
         this.ctx.fillText("Choose Difficulty",game.canvas.width/2,game.canvas.height*2/3-60);
         this.ctx.font = "20px Comic Sans MS";
-        // this.ctx.fillText("GameScore: "+game.score,game.canvas.width/2,game.canvas.height*2/3-20);
-        // this.ctx.fillText("Highest Score: "+window.localStorage.getItem("Highest Score"),game.canvas.width/2,game.canvas.height*2/3);
         this.ctx.fill();
         this.ctx.closePath();
     }
@@ -128,7 +87,6 @@ class Drawer {
         document.getElementById("play").innerHTML = "Play Again";
         document.getElementById("play").style.display=  "Block"
         this.ctx.beginPath();
-        // this.ctx.fillRect(0,0,game.canvas.width,game.canvas.height);
         this.ctx.fillStyle = "#0080ff";
         this.ctx.fillRect(0,0,game.canvas.width,game.canvas.height);
         this.ctx.fill();
@@ -150,7 +108,6 @@ class Drawer {
         document.getElementById("play").innerHTML = "Try Again!";
         document.getElementById("play").style.display=  "Block";
         this.ctx.beginPath();
-        // this.ctx.fillRect(0,0,game.canvas.width,game.canvas.height);
         this.ctx.fillStyle = "#0080ff";
         this.ctx.fillRect(0,0,game.canvas.width,game.canvas.height);
         this.ctx.fill();

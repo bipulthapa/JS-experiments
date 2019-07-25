@@ -1,5 +1,13 @@
 const COOKIE_SIZE = 10;
 const SCATTER_TIMEOUT_DECREMENT = 2;
+const SPRITE_TILE_CLIPPING_SIZE = 96;
+const SPRITE_TILE_SX = 3;
+const SPRITE_TILE_SY = 3
+const FOOD_SIZE = 2;
+const SPRITE_DOOR_SX = 226;
+const SPRITE_DOOR_SY = 4;
+const SPRITE_DOOR_WIDTH= 88;
+const SPRITE_DOOR_HEIGHT=20;
 
 class Map {
 
@@ -72,27 +80,17 @@ class Map {
     drawObstacle(ctx, row, col) {
         var coordinates = this.getTileCoordinates(row,col);
         // ctx.beginPath();
-        // ctx.strokeStyle = "#000066";
-        // ctx.strokeRect(coordinates.x,coordinates.y,this.tileSize,this.tileSize);
-        // ctx.stroke();
-        // ctx.closePath();
-        
-        // ctx.beginPath();
         // ctx.fillStyle = "blue";
         // ctx.fillRect(coordinates.x,coordinates.y,this.tileSize,this.tileSize);
         // ctx.fill();
         // ctx.closePath();
-
-        ctx.drawImage(SPRITES.mapTile,3,3,96,96,coordinates.x,coordinates.y,this.tileSize,this.tileSize);
-
-
-
+        ctx.drawImage(SPRITES.mapTile,SPRITE_TILE_SX,SPRITE_TILE_SY,SPRITE_TILE_CLIPPING_SIZE,SPRITE_TILE_CLIPPING_SIZE,coordinates.x,coordinates.y,this.tileSize,this.tileSize);
     }
 
     drawFoodElement(ctx, row, col){
         ctx.fillStyle = "orange";
         var coordinates = this.getTileCenter(row, col);
-        ctx.fillRect(coordinates.x - 1, coordinates.y - 1, 2, 2);
+        ctx.fillRect(coordinates.x - 1, coordinates.y - 1, FOOD_SIZE, FOOD_SIZE);
     }
 
     drawCookie(ctx, row, col) {
@@ -100,10 +98,7 @@ class Map {
         var coordinates = this.getTileCoordinates(row, col);
         ctx.beginPath();
         const radius = 4;
-        // ctx.arc(coordinates.x + (this.tileSize / 2),
-            // coordinates.y + (this.tileSize / 2),
-            // radius, 0, Math.PI * 2);
-        ctx.fillRect(coordinates.x+this.tileSize/2-10/2,coordinates.y+this.tileSize/2-10/2,10,10)
+        ctx.fillRect(coordinates.x+this.tileSize/2-10/2,coordinates.y+this.tileSize/2-10/2,COOKIE_SIZE,COOKIE_SIZE)
         ctx.fill();
         ctx.closePath();
     }
@@ -111,8 +106,7 @@ class Map {
     drawDoor(ctx,row,col){
         var coordinates = this.getTileCoordinates(row,col);
         ctx.beginPath();
-        ctx.drawImage(SPRITES.mapTile,226,4,88,20,coordinates.x,coordinates.y,this.tileSize,this.tileSize);
-        // ctx.fillRect(coordinates.x,coordinates.y,this.tileSize,this.tileSize);
+        ctx.drawImage(SPRITES.mapTile,SPRITE_DOOR_SX,SPRITE_DOOR_SY,SPRITE_DOOR_WIDTH,SPRITE_DOOR_HEIGHT,coordinates.x,coordinates.y,this.tileSize,this.tileSize);
         ctx.closePath();
     }
 
@@ -160,8 +154,8 @@ class Map {
         this.hasFoodElements = true;
     }
 
+    //matrix for tiling
     getTiles() {
-
         return [
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             [1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1],

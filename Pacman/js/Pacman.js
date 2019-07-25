@@ -47,21 +47,8 @@ class Pacman extends MovingAgent {
     die() {
         this.lives -= 1;
         game.drawer.drawLives(this.lives);
-        // place the animation over here
-        // this.ispacmanAlive = false
-        // game.ctx.fillRect(game.pacman.x,game.pacman.y,2*game.pacman.radius,2*game.pacman.radius);
-        // if(game.deathAnimationTimer >= game.fps*2){
-        //     this.resetPosition();
-        //     this.agentDirection = 0;
-        //     game.deathAnimationTimer = 0;
-        // }
-
-        // sleep(2000);
         this.resetPosition();
         this.agentDirection = 0;
-
-
-        
     }
 
     reset() {

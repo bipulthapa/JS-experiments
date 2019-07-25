@@ -7,16 +7,12 @@ class MovingAgent {
         this.agentSpriteIndex = agentSpriteIndex;
 
         this.fullRadius = 12;
-        this.radius = 15; // for packman size
+        // for packman size
+        this.radius = 15; 
 
         // values for movement on x and y axis
         this.dx = 2;
         this.dy = 2;
-        // this.speed =2 ;
-
-        // this.speed = 2;
-
-
         this.currentDir = this.initialDir();
         this.nextDir = this.initialDir();
 
@@ -32,12 +28,10 @@ class MovingAgent {
     }
 
     move(){
-        // console.log(game.scatterTimeout);
         if ((this.directionChanged() && this.canMove(this.nextDir)) ||
             !this.canMove(this.currentDir) && this.canMove(this.nextDir)) {
             //update direction
             this.currentDir = this.nextDir; 
-            // console.log(this.currentDir);
             this.nextDir = this.initialDir();
         }
 
@@ -122,7 +116,6 @@ class MovingAgent {
 
     canTeleportRightToLeft() {
         var tile = this.map.getTileRowColumn(this.x + this.fullRadius - 1 + this.dx, this.y);
-        // return tile.row === -1 && tile.col === -1;
         if(tile.row === -1 && tile.col === -1){
             return true;
         }else{
@@ -184,9 +177,7 @@ class MovingAgent {
     }
 
     directionChanged() {
-        // return this.hasNextDir() ? !this.isNextDirSameAsCurrent() : false;
         if (this.nextDir.UP || this.nextDir.RIGHT || this.nextDir.DOWN || this.nextDir.LEFT){
-            // return !this.isNextDirSameAsCurrent();
             if(!this.isNextDirSameAsCurrent()){
                 return true;
             }else{
@@ -196,10 +187,6 @@ class MovingAgent {
             return false;
         }
     }
-
-    // hasNextDir() {
-    //     return this.nextDir.UP || this.nextDir.RIGHT || this.nextDir.DOWN || this.nextDir.LEFT;
-    // }
 
     isNextDirSameAsCurrent() {
         if(this.currentDir.UP === this.nextDir.UP && this.currentDir.RIGHT === this.nextDir.RIGHT && this.currentDir.DOWN === this.nextDir.DOWN && this.currentDir.LEFT === this.nextDir.LEFT){

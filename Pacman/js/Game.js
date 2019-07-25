@@ -56,8 +56,7 @@ class Game{
           HARD: 3
         }
 
-        this.gameState = 1;
-        // this.gameStates.NEW_GAME;
+        this.gameState = this.gameStates.NEW_GAME;
         this.gameLevel = undefined;
         this.currentLevel = 1;
         this.lastFrameTimestamp = 0;
@@ -68,8 +67,9 @@ class Game{
         this.deathAnimationTimer = 0;
         this.animation;
         this.scatterTimeout = 7;
-        this.chaseScatterTimeout = this.scatterTimeout; // time for holding chasing period and scatter period.
-        // this.ctx.imageSmoothingEnabled = false;
+
+        // time for holding chasing period and scatter period.
+        this.chaseScatterTimeout = this.scatterTimeout; 
         this.isPlayerEnemyMode = false;
     }
 
@@ -142,7 +142,7 @@ class Game{
                 this.initialScreen();
                 this.audioPlayer.startGameSound.play();
                 if(this.startingGameTimer >= this.fps*4){
-                    this.drawer.drawCountDown("GO")
+                    this.drawer.drawCountDown("GO");
                     this.setGameState(this.gameStates.RUNNING);
                     this.startingGameTimer = 0;
                 }else if(this.startingGameTimer >= this.fps*3){
@@ -156,6 +156,8 @@ class Game{
                 break;
 
             case this.gameStates.RUNNING:
+
+            //sets up scatter timeout according to the game level
                 if(this.getGameLevel() === this.gameLevels.MEDIUM){
                   this.scatterTimeout = 5;
                 }else if(this.getGameLevel() === this.gameLevels.HARD){
@@ -165,9 +167,7 @@ class Game{
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
                     this.map.drawMap(this.ctx);
-
                     this.drawer.drawScore(this.score);
-                    // this.drawer.drawLives(this.pacman.lives);
 
                     if (this.pacman.chasingMode) {
                         // chasing mode lasted 5 seconds
@@ -183,9 +183,7 @@ class Game{
                             this.tick++;
                         }
                     }
-                    // console.log(this.blinky)
-                    // for setting up control if previously not pressed
-
+                    //pacman control
                       if (this.controls.rightPressed && !this.pacman.currentDir.RIGHT) {
                           this.pacman.nextDir = this.pacman.initialDir();
                           this.pacman.nextDir.RIGHT = true;
@@ -203,6 +201,7 @@ class Game{
                           this.pacman.nextDir.DOWN = true;
                       }
 
+                      //for player enemy mode controller
                       if(this.isPlayerEnemyMode){
                         if (this.controls.dPressed && !this.blinky.currentDir.RIGHT) {
                           this.blinky.nextDir = this.pacman.initialDir();
@@ -225,8 +224,7 @@ class Game{
                     this.pacman.move();
                     for(var ghost of this.ghosts) {
                         ghost.move();
-                    }    
-
+                    }
                     var ghostCollision = false;
                     var collidedGhost;
                     this.drawer.drawPacman(this.pacman);
@@ -242,6 +240,7 @@ class Game{
                             this.drawer.drawGhost(ghost, this.pacman.chasingMode);
                         }
                     }
+
                     //if ghost collision is true increase the deathAnimationTimer
                     if(ghostCollision){
                       this.deathAnimationTimer++;
@@ -257,7 +256,6 @@ class Game{
                             ghost.reset();
                         }
                         if (this.pacman.lives === 0) {
-                          // cancelAnimationFrame(this.animation);
                           this.setGameState(this.gameStates.GAME_LOST);
                         }
                     }
@@ -282,7 +280,6 @@ class Game{
 
             case this.gameStates.LEVEL:
                 this.drawer.levelScreen();
-                // level conditions
                 break;
 
             case this.gameStates.GAME_WON:
@@ -301,10 +298,10 @@ class Game{
             case this.gameStates.INSTRUCTION:
                 this.drawer.instructionScreen();
                 break;
-
         } 
     }
 
+    //pacman death animation function
     animatePacmanDeath(pacman){
       cancelAnimationFrame(this.animation)
       var pacmanXPos = pacman.x;
@@ -322,11 +319,9 @@ class Game{
       },3000);
     }
 
+    //initial game screen updating agent mouth
     init() {
         this.initialScreen();
-
-    //    console.log(gameState);
-
       setInterval(function(){
             this.pacman.updateAgentMouth();
             for(let ghost of this.ghosts){
@@ -335,11 +330,7 @@ class Game{
         }.bind(this),200);
         // this.aStarAlgo.initAstar(1,2,9,9);
         this.draw()
-        //stopping condition for request animation
     }
 
 }
 
-// var canvas = document.getElementById('canvas');
-// var game = new Game(canvas,CANVAS_WIDTH,CANVAS_HEIGHT);
-// game.init()

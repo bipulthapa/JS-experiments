@@ -36,7 +36,6 @@ class Controls {
     keyDownHandler(e) {
         if(e.keyCode === this.leftKey) {
             this.leftPressed = true;
-            // console.log()
         }else if(e.keyCode === this.upKey) {
             this.upPressed = true;
         }else if(e.keyCode === this.rightKey) {

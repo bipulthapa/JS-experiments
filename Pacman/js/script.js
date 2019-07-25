@@ -11,9 +11,8 @@ function assetsLoadingLoop(callback) {
 }
 
 
-function loadAssets(callback) 
-{     //once this function finishes to load all assets this callback function gets activated
-
+function loadAssets(callback) {
+    //call back function gets called after loading     
     function loadSprite(fileName) {
       assetsStillLoading++;
   
@@ -32,6 +31,26 @@ function loadAssets(callback)
       return spriteImage;
     }
 
+    function loadAudio(fileName){
+        assetsStillLoading++;
+
+        let audio = new Audio(fileName);
+        audio.oncanplaythrough = function(){
+            assetsStillLoading--;
+        };
+        return audio;
+    }
+
+    AUDIOS.startGame = loadAudio("sound/startGame.mp3");
+    AUDIOS.eatFood =loadAudio("sound/eatFood.mp3");
+    AUDIOS.die =loadAudio("sound/die.mp3");
+    AUDIOS.eatCookie =loadAudio("sound/eatCookie.mp3");
+    AUDIOS.chasing =loadAudio("sound/chasing.mp3");
+    AUDIOS.eatGhost =loadAudio("sound/eatGhost.mp3");
+    AUDIOS.ghostDead =loadAudio("sound/ghostDead.mp3");
+
+
+
     SPRITES.pacManImages = loadSprite('./images/pac.png');
     SPRITES.pacmanLogo = loadSprite('./images/gameLogo.png');
     SPRITES.startSceenPacman = loadSprite('./images/newScreenPacman.png');
@@ -49,8 +68,8 @@ let assetsStillLoading = 0;
 let assetsLoader;
 let numAssets;
 let loadedPercent;
-const AUDIOS = {};
 const SPRITES = {};
+const AUDIOS = {};
 
 let canvas = document.getElementById('canvas');
 var game =  new Game(canvas,CANVAS_WIDTH,CANVAS_HEIGHT);

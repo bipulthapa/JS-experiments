@@ -5,14 +5,12 @@ class Ghost extends MovingAgent {
         super(map,agentSpriteIndex);
 
         this.name = name;
-        // this.color = this.getColor(name);
         const startingTile = this.getStartingTile(name);
         const startCoords = map.getTileCenter(startingTile.row, startingTile.col);
 
         this.x = startCoords.x;
         this.y = startCoords.y;
 
-        // console.log(this.x,this.y)
         this.alive = true;
         this.deadTick = 0;
         this.lookAheadForPinky = 4;
@@ -32,7 +30,6 @@ class Ghost extends MovingAgent {
                }
             }else if(this.name === "pinky"){
                 if(!game.pacman.chasingMode){
-                    // this.nextDir = this.pinkyChase();
                     this.nextDir = this.isChasingTimeOn ? this.pinkyChase() : this.scatterMode(1*24,1*24);
                 }
                 else{
@@ -40,7 +37,6 @@ class Ghost extends MovingAgent {
                 }
             }else if(this.name === "inky"){
                 if(!game.pacman.chasingMode){
-                    // this.nextDir =this.inkyChase();
                     this.nextDir = this.isChasingTimeOn ? this.inkyChase() : this.scatterMode(18*24,18*24);
 
                 }else{
@@ -48,7 +44,6 @@ class Ghost extends MovingAgent {
                 }
             }else if(this.name === "clyde"){
                 if(!game.pacman.chasingMode){
-                    // this.nextDir = this.clydeChase();
                     this.nextDir = this.isChasingTimeOn ? this.clydeChase() : this.scatterMode(1*24,18*24);
 
                 }else{
